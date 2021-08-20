@@ -8,12 +8,14 @@ public class AddressBookMain {
         Scanner sc = new Scanner(System.in);
         book.add();
         System.out.println("enter the number to edit or exit");
-        System.out.println("1.Edit 2.exit");
+        System.out.println("1.Edit    2.Delete    3.exit");
         int input = sc.nextInt();
 
         switch (input) {
             case 1:
                 book.editContact();
+            case 2:
+                book.delete();
             default:
                 break;
         }
