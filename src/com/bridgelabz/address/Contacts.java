@@ -10,9 +10,6 @@ public class Contacts {
     private String phoneNumber;
     private String email;
 
-    public Contacts() {
-        // TODO Auto-generated constructor stub
-    }
 
     public String getFirstName() {
         return firstName;
@@ -74,5 +71,19 @@ public class Contacts {
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Contacts{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", City='" + City + '\'' +
+                ", state='" + state + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
