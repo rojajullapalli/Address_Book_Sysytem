@@ -10,6 +10,10 @@ public class Contacts {
     private String phoneNumber;
     private String email;
 
+    public Contacts() {
+        // TODO Auto-generated constructor stub
+    }
+
     public String getFirstName() {
         return firstName;
     }
