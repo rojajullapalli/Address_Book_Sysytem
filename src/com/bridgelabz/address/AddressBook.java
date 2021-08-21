@@ -1,12 +1,13 @@
 package com.bridgelabz.address;
 
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-    Contacts contact = new Contacts();
+    ArrayList<Contacts> contactList = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
-    AddressBookMain book=new AddressBookMain();
+
     public  void add() {
 
         //Takes input from user
@@ -29,7 +30,7 @@ public class AddressBook {
         String email = sc.nextLine();
 
         //calling the set method
-
+        Contacts contact = new Contacts();
         contact.setFirstName(firstName);
         contact.setLastName(lastName);
         contact.setAddress(address);
@@ -38,6 +39,7 @@ public class AddressBook {
         contact.setZipCode(zipCode);
         contact.setPhoneNumber(phoneNum);
         contact.setEmail(email);
+        contactList.add(contact);
         System.out.println(contact);
 
 
@@ -46,64 +48,79 @@ public class AddressBook {
     public void editContact() {
         System.out.println("Enter First Name of Person to edit");
         String editName = sc.nextLine();
-        if (editName.equalsIgnoreCase(contact.getFirstName())) {
-            System.out.println("Choose field you want to add:");
-            System.out.println("1.Last Name    2.Phone Number     3.Address   4.State   5.City");
-            System.out.println("6.Zip     7.Email");
-            switch (sc.nextInt()) {
-                case 1: {
-                    System.out.println("Re-Correct your lastname");
-                    contact.setLastName(sc.next());
-                    break;
-                }
-                case 2: {
-                    System.out.println("Re-Correct your Phone Number");
-                    contact.setPhoneNumber(sc.next());
-                    break;
-                }
-                case 3: {
-                    System.out.println("Re-Correct your Address");
-                    contact.setAddress(sc.next());
-                    break;
-                }
-                case 4: {
-                    System.out.println("Re-Correct your State");
-                    contact.setState(sc.next());
-                    break;
-                }
-                case 5: {
-                    System.out.println("Re-Correct your City");
-                    contact.setCity(sc.next());
-                    break;
-                }
-                case 6: {
-                    System.out.println("Re-Correct your Zip");
-                    contact.setZipCode(sc.next());
-                    break;
-                }
-                case 7: {
-                    System.out.println("Re-Correct your Email");
-                    contact.setEmail(sc.next());
-                    break;
+        boolean found=false;
+        for (Contacts contact : contactList) {
+            if (editName.equalsIgnoreCase(contact.getFirstName())) {
+                found = true;
+                System.out.println("Choose field you want to add:");
+                System.out.println("1.Last Name    2.Phone Number     3.Address   4.State   5.City");
+                System.out.println("6.Zip     7.Email");
+                switch (sc.nextInt()) {
+                    case 1: {
+                        System.out.println("Re-Correct your lastname");
+                        contact.setLastName(sc.next());
+                        break;
+                    }
+                    case 2: {
+                        System.out.println("Re-Correct your Phone Number");
+                        contact.setPhoneNumber(sc.next());
+                        break;
+                    }
+                    case 3: {
+                        System.out.println("Re-Correct your Address");
+                        contact.setAddress(sc.next());
+                        break;
+                    }
+                    case 4: {
+                        System.out.println("Re-Correct your State");
+                        contact.setState(sc.next());
+                        break;
+                    }
+                    case 5: {
+                        System.out.println("Re-Correct your City");
+                        contact.setCity(sc.next());
+                        break;
+                    }
+                    case 6: {
+                        System.out.println("Re-Correct your Zip");
+                        contact.setZipCode(sc.next());
+                        break;
+                    }
+                    case 7: {
+                        System.out.println("Re-Correct your Email");
+                        contact.setEmail(sc.next());
+                        break;
+                    }
                 }
             }
-        } else {
-            System.out.println("Invalid Name......!");
-            System.out.println("Please enter valid First Name");
-            editContact();
         }
-        System.out.println(contact);
+        if(found==true)
+            showContact();
+        else
+            System.out.println("invalid contact");
+    }
+    public void showContact(){
+        System.out.println("All contact =  " + contactList.size());
+        System.out.println(contactList);
 
     }
 
     public void delete() {
         System.out.println("Enter First Name of Person to delete");
         String deleteName = sc.next();
-        if (deleteName.equals(contact.getFirstName())) {
-            System.out.println("you deleted " + contact.getFirstName() + " data");
-            contact = null;
-            System.out.println(contact);
+        boolean found = false;
+        for (int i = 0; i < contactList.size(); i++) {
+
+            if (contactList.get(i).getFirstName().equals(deleteName)) {
+                found = true;
+                contactList.remove(i);
+            }
         }
+        if (found)
+            System.out.println("Contact Deleted Successfully");
+        else
+            System.out.println("contact Not found");
+
     }
 
 }

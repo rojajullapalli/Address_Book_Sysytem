@@ -84,6 +84,6 @@ public class Contacts {
                 ", zipCode='" + zipCode + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                '}';
+                '}'+'\n';
     }
 }
