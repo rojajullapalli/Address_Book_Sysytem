@@ -1,39 +1,37 @@
 package com.bridgelabz.address;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-public class AddressBookOptions {
-    public static void getChoice(AddressBook addressBook) {
+public class AddressBookOptions extends AddressBook{
+    public ArrayList<Contacts> operation() {
         Scanner sc = new Scanner(System.in);
-        AddressBook book = new AddressBook();
-        while (true) {
+        boolean option = true;
+        while (option) {
             System.out.println("enter the number to do following operation");
-            System.out.println("1.Add   2.Edit    3.Show   4..Delete  5.back to main menu 6.exit");
+            System.out.println("1.Add   2.Edit    3.Show   4..Delete  5.back to main menu");
             int input = sc.nextInt();
 
             switch (input) {
                 case 1:
-                    book.add();
+                    add();
                     break;
 
                 case 2:
-                    book.editContact();
+                    editContact();
                     break;
 
                 case 3:
-                    book.showContact();
+                    showContact();
                     break;
 
                 case 4:
-                    book.delete();
+                    delete();
                     break;
-                case 5:
-                    return;
                 default:
-                    System.exit(0);
-                    break;
+                    option = false;
             }
         }
+        return contactList;
     }
 }
-

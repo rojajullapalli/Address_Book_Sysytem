@@ -8,7 +8,7 @@ public class AddressBook {
     ArrayList<Contacts> contactList = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
 
-    public  void add() {
+    public  ArrayList add() {
 
         //Takes input from user
 
@@ -41,6 +41,7 @@ public class AddressBook {
         contact.setEmail(email);
         contactList.add(contact);
         System.out.println(contact);
+        return contactList;
 
 
     }

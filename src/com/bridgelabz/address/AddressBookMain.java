@@ -2,56 +2,46 @@ package com.bridgelabz.address;
 
 import java.util.*;
 
-public class AddressBookMain {
-    public static void main(String[] args) {
+public class AddressBookMain{
+   public void addAddressBook(){
+        HashMap<String, ArrayList<Contacts>> bookList = new HashMap<>();
         Scanner sc = new Scanner(System.in);
-        AddressBookOptions options=new AddressBookOptions();
-        Map<String, AddressBook> addressBookMap = new HashMap<String,AddressBook>();
 
         while (true) {
+            AddressBookOptions options = new AddressBookOptions();
             System.out.println("\n--------------------------Welcome to Address Book System--------------------------");
             System.out.println("1. New Address Book");
             System.out.println("2. Select Address Book");
-            System.out.println("3. Delete Address Book");
-            System.out.println("4. Exit");
+            System.out.println("3. Exit");
             System.out.print("Enter Your choice: ");
             int choice = sc.nextInt();
             sc.nextLine();
             switch (choice) {
                 case 1:
-                    System.out.println("Enter Name of new Address Book: ");
-                    String bookName = sc.next();
-                    sc.nextLine();
-                    addressBookMap.put(bookName, new AddressBook());// adding bookname as a key and vlue is allocating
-                    // memory for addressbook obj
-                    options.getChoice(addressBookMap.get(bookName));// call addressbookoption method with
-                    // passing key of hashmap
+                    System.out.println("Enter name for Address book");
+                    String addBookName = sc.next();
+
+                    bookList.put(addBookName, options.operation());
                     break;
+
+
                 case 2:
-                    System.out.println("List of available Address Book : ");
-                    Set keys = addressBookMap.keySet();// retrived keys from hashmap to show addressbooklist
-                    Iterator i = keys.iterator();
-                    while (i.hasNext()) {
-                        System.out.println(i.next());
+                    int i = 1;
+                    for (String book : bookList.keySet()) {
+                        System.out.println(i + ". " + book);
+                        i++;
                     }
-                    System.out.println("Enter Address Book name you want to Open : ");
-                    String name = sc.nextLine();
-                    System.out.println("Current Address Book is : " + name);
-                    options.getChoice(addressBookMap.get(name));// call method with passing address book name
+
+                    System.out.println("\n" + bookList);
+
                     break;
-                case 3:
-                    System.out.println("Enter Address Book name to be delete: ");
-                    name = sc.nextLine();
-                    addressBookMap.remove(name);// delete hashmap using remove fun
-                    break;
-                case 4:
-                    sc.close();// for closing the programme
-                    return;
+
                 default:
-                    System.out.println("You Entered Invalid Choice....!");
-                    break;
+                    System.exit(0);
+
             }
         }
     }
 
 }
+
