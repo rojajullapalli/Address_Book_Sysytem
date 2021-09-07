@@ -6,6 +6,6 @@ public class AddressBook {
         System.out.println("Welcome to address book problem");
 
        CreateBook book = new CreateBook();
-       book.CreateBook();
+       book.createBook();
     }
 }
