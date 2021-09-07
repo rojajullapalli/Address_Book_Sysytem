@@ -94,46 +94,41 @@ public class AddressBookMain {
             Contacts contact = contactList.get(editName);
             System.out.println(contact);
 
-            System.out.println("What do you want to edit\n1. First Name\n2. Last Name\n3. Address\n4. City\n5. State\n6. Zip code\n7. Phone Number\n8. Email");
+            System.out.println("What do you want to edit\n1. Last Name\n2. Address\n3. City\n4. State\n5. Zip code\n6. Phone Number\n7. Email");
             int choice = scanner.nextInt();
 
             switch (choice) {
                 case 1:
-                    System.out.println("Enter new First Name");
-                    String newFirstName = scanner.next();
-                    contact.setFirstName(newFirstName);
-                    break;
-                case 2:
                     System.out.println("Enter new Last Name");
                     String newLastName = scanner.next();
                     contact.setLastName(newLastName);
                     break;
-                case 3:
+                case 2:
                     System.out.println("Enter new Address");
                     String newAddress = scanner.next();
                     contact.setAddress(newAddress);
                     break;
-                case 4:
+                case 3:
                     System.out.println("Enter new City");
                     String newCity = scanner.next();
                     contact.setCity(newCity);
                     break;
-                case 5:
+                case 4:
                     System.out.println("Enter new State");
                     String newState = scanner.next();
                     contact.setState(newState);
                     break;
-                case 6:
+                case 5:
                     System.out.println("Enter new Zip code");
                     String newZip = scanner.next();
                     contact.setZipCode(newZip);
                     break;
-                case 7:
+                case 6:
                     System.out.println("Enter new Phone Number");
                     String newPhoneNo = scanner.next();
                     contact.setPhoneNumber(newPhoneNo);
                     break;
-                case 8:
+                case 7:
                     System.out.println("Enter new Email");
                     String newEmail = scanner.next();
                     contact.setEmail(newEmail);
@@ -171,6 +166,7 @@ public class AddressBookMain {
             if (!contactList.isEmpty())
                 searchoutput.put(keyOfBook, contactList);
         }
+        System.out.println(searchoutput);
         return searchoutput;
     }
 }
