@@ -1,4 +1,4 @@
-package com.bridgelabz.address;
+package com.bridgelabz.address.com;
 
 public class Contacts {
     private String firstName;
