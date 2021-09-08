@@ -1,6 +1,8 @@
 package com.bridgelabz.address.com;
 
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
     Scanner scanner = new Scanner(System.in);
@@ -69,10 +71,7 @@ public class AddressBookMain {
             contact.setZipCode(zip);
             contact.setPhoneNumber(phoneNo);
             contact.setEmail(email);
-
             contactList.add(contact);
-
-
         } else
             System.out.println("Name already exists");
         return contactList;
@@ -142,7 +141,6 @@ public class AddressBookMain {
         System.out.println("Enter a name you want to delete...");
         String searchName = scanner.next();
         int deleteName = searchName(searchName, contactList);
-
         if (deleteName == -1)
             System.out.println("Name not found");
         else {
@@ -151,21 +149,25 @@ public class AddressBookMain {
         }
 
     }
-
     public Hashtable<String, List<String>> searchLocation(String nameForLocation) {
         Hashtable<String, List<String>> searchoutput = new Hashtable<>();
         List<String> contactList;
+        int count = 0;
         for (String keyOfBook : contactBook.keySet()) {
 
             contactList = new ArrayList<>();
             for (int index = 0; index < contactBook.get(keyOfBook).size(); index++) {
 
-                if (contactBook.get(keyOfBook).get(index).getState().equals(nameForLocation))
+                if (contactBook.get(keyOfBook).get(index).getState().equals(nameForLocation)) {
                     contactList.add(contactBook.get(keyOfBook).get(index).getFirstName());
+                    count=contactList.size();
+                }
             }
+            System.out.println("The number  of the persons is addressbook "+keyOfBook+" sort by state "+count);
             if (!contactList.isEmpty())
                 searchoutput.put(keyOfBook, contactList);
         }
+
         System.out.println(searchoutput);
         return searchoutput;
     }

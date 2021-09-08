@@ -33,10 +33,10 @@ public class CreateBook extends AddressBookMain{
                     break;
 
                 case 3:
-                    int serialNo = 1;
+                    int i = 1;
                     for (String book : contactBook.keySet()) {
-                        System.out.println(serialNo + ". " + book);
-                        serialNo++;
+                        System.out.println(i + " " + book);
+                        i++;
                     }
 
                     System.out.println("\n" + contactBook);
