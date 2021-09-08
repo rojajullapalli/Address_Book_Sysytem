@@ -171,4 +171,11 @@ public class AddressBookMain {
         System.out.println(searchoutput);
         return searchoutput;
     }
+
+    public void sortPerson() {
+        contactBook.keySet().forEach(entry -> {
+            List<Contacts> data = contactBook.get(entry).stream().sorted(Comparator.comparing(Contacts::getFirstName)).collect(Collectors.toList());
+            System.out.println(data);
+        });
+    }
 }

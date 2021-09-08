@@ -7,7 +7,7 @@ public class CreateBook extends AddressBookMain{
 
     public void createBook() {
         while (true) {
-            System.out.println("\nWhat would you like to do? \n1. Crate new address book\n2. Continue with existing address book\n3. All books\n4. Search Location\n5. Exit");
+            System.out.println("\nWhat would you like to do? \n1. Crate new address book\n2. Continue with existing address book\n3. All books\n4. Search Location\n5. Sort\n6. Exit");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
@@ -47,7 +47,9 @@ public class CreateBook extends AddressBookMain{
                     String Location = scanner.next();
                     searchLocation(Location);
                     break;
-
+                case 5:
+                    sortPerson();
+                    break;
                 default:
                     System.exit(0);
             }
