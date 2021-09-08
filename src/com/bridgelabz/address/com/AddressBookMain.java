@@ -173,9 +173,34 @@ public class AddressBookMain {
     }
 
     public void sortPerson() {
-        contactBook.keySet().forEach(entry -> {
-            List<Contacts> data = contactBook.get(entry).stream().sorted(Comparator.comparing(Contacts::getFirstName)).collect(Collectors.toList());
-            System.out.println(data);
-        });
+        System.out.println("Press 1 to sort person by First Name");
+        System.out.println("Press 2 to sort person by City");
+        System.out.println("Press 3 to sort person by State");
+        int choice = scanner.nextInt();
+        switch(choice) {
+            case 1:
+                System.out.println("sorted by FirstName");
+                contactBook.keySet().forEach(entry -> {
+                    List<Contacts> data = contactBook.get(entry).stream().sorted(Comparator.comparing(Contacts::getFirstName)).collect(Collectors.toList());
+                    System.out.println(data);
+                });
+                break;
+            case 2:
+                System.out.println("Sorted based on City");
+                contactBook.keySet().forEach(entry -> {
+                    List<Contacts> data = contactBook.get(entry).stream().sorted(Comparator.comparing(Contacts::getCity)).collect(Collectors.toList());
+                    System.out.println(data);
+                });
+                break;
+            case 3:
+                System.out.println("sorted based on state");
+                contactBook.keySet().forEach(entry -> {
+                    List<Contacts> data = contactBook.get(entry).stream().sorted(Comparator.comparing(Contacts::getState)).collect(Collectors.toList());
+                    System.out.println(data);
+                });
+                break;
+            default:
+                break;
+        }
     }
 }
