@@ -1,7 +1,6 @@
 package com.bridgelabz.address.com;
 
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class AddressBookMain {
@@ -31,7 +30,6 @@ public class AddressBookMain {
                     run = false;
             }
         }
-
     }
 
     public int searchName(String searchName, LinkedList<Contacts> contactList) {
@@ -86,16 +84,13 @@ public class AddressBookMain {
         System.out.println("Enter a name you want to edit...");
         String searchName = scanner.next();
         int editName = searchName(searchName, contactList);
-
         if (editName == -1)
             System.out.println("Name not found");
         else {
             Contacts contact = contactList.get(editName);
             System.out.println(contact);
-
             System.out.println("What do you want to edit\n1. Last Name\n2. Address\n3. City\n4. State\n5. Zip code\n6. Phone Number\n7. Email");
             int choice = scanner.nextInt();
-
             switch (choice) {
                 case 1:
                     System.out.println("Enter new Last Name");
@@ -133,7 +128,7 @@ public class AddressBookMain {
                     contact.setEmail(newEmail);
                     break;
             }
-            System.out.println("Contact Added Successfully");
+            System.out.println("Contact edited Successfully");
         }
     }
 
@@ -147,29 +142,16 @@ public class AddressBookMain {
             contactList.remove(deleteName);
             System.out.println("contact deleted successfully");
         }
-
     }
-    public Hashtable<String, List<String>> searchLocation(String nameForLocation) {
-        Hashtable<String, List<String>> searchoutput = new Hashtable<>();
-        List<String> contactList;
-        int count = 0;
-        for (String keyOfBook : contactBook.keySet()) {
 
-            contactList = new ArrayList<>();
-            for (int index = 0; index < contactBook.get(keyOfBook).size(); index++) {
-
-                if (contactBook.get(keyOfBook).get(index).getState().equals(nameForLocation)) {
-                    contactList.add(contactBook.get(keyOfBook).get(index).getFirstName());
-                    count=contactList.size();
-                }
-            }
-            System.out.println("The number  of the persons is addressbook "+keyOfBook+" sort by state "+count);
-            if (!contactList.isEmpty())
-                searchoutput.put(keyOfBook, contactList);
-        }
-
-        System.out.println(searchoutput);
-        return searchoutput;
+    public void searchLocation(String state){
+        contactBook.keySet().forEach(entry -> {
+            List<Contacts> searchLocation = contactBook.get(entry).stream()
+                    .filter(s->s.getState().equals(state))
+                    .collect(Collectors.toList());
+            System.out.println("the number of persons in "+entry+" is "+searchLocation.size());
+            System.out.println(searchLocation);
+        });
     }
 
     public void sortPerson() {
@@ -181,26 +163,33 @@ public class AddressBookMain {
             case 1:
                 System.out.println("sorted by FirstName");
                 contactBook.keySet().forEach(entry -> {
-                    List<Contacts> data = contactBook.get(entry).stream().sorted(Comparator.comparing(Contacts::getFirstName)).collect(Collectors.toList());
-                    System.out.println(data);
+                    List<Contacts> firstNameSort = contactBook.get(entry).stream()
+                            .sorted(Comparator.comparing(Contacts::getFirstName))
+                            .collect(Collectors.toList());
+                    System.out.println(firstNameSort);
                 });
                 break;
             case 2:
                 System.out.println("Sorted based on City");
                 contactBook.keySet().forEach(entry -> {
-                    List<Contacts> data = contactBook.get(entry).stream().sorted(Comparator.comparing(Contacts::getCity)).collect(Collectors.toList());
-                    System.out.println(data);
+                    List<Contacts> citySort = contactBook.get(entry).stream()
+                            .sorted(Comparator.comparing(Contacts::getCity))
+                            .collect(Collectors.toList());
+                    System.out.println(citySort);
                 });
                 break;
             case 3:
                 System.out.println("sorted based on state");
                 contactBook.keySet().forEach(entry -> {
-                    List<Contacts> data = contactBook.get(entry).stream().sorted(Comparator.comparing(Contacts::getState)).collect(Collectors.toList());
-                    System.out.println(data);
+                    List<Contacts> stateSort = contactBook.get(entry).stream()
+                            .sorted(Comparator.comparing(Contacts::getState))
+                            .collect(Collectors.toList());
+                    System.out.println(stateSort);
                 });
                 break;
             default:
                 break;
         }
     }
+
 }

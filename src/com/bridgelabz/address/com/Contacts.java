@@ -10,7 +10,6 @@ public class Contacts {
     private String phoneNumber;
     private String email;
 
-
     public String getFirstName() {
         return firstName;
     }
@@ -42,6 +41,7 @@ public class Contacts {
     public void setCity(String city) {
         City = city;
     }
+
     public String getState() {
         return state;
     }
@@ -69,6 +69,7 @@ public class Contacts {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -84,6 +85,6 @@ public class Contacts {
                 ", zipCode='" + zipCode + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                '}'+'\n';
+                '}' + '\n';
     }
 }
